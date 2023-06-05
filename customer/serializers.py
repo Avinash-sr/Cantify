@@ -1,30 +1,21 @@
 from rest_framework import serializers
 from .models import *
+from canteen_app.serializers import ItemSerializer
 
-class CartItemSerializer(serializers.ModelSerializer):
-    item = serializers.PrimaryKeyRelatedField(queryset=Item.objects.all)
-
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CartItem
-        fields = ['item', 'quantity']
-
-class CartSerailizer(serializers.ModelSerializer):
-    items = CartItemSerializer(many= True, read_only= True)
-
-    class Meta:
-        model= Cart
-        fields = ['id', 'user', 'items'] 
-
-class OrderItemSerializer(serializers.ModelSerializer):
-    item = serializers.PrimaryKeyRelatedField(queryset=Item.objects.all())
-    
-    class Meta:
-        model = OrderItem
-        fields = ['item', 'quantity']
+        model = Profile
+        fields = '__all__'
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many= True, read_only=True)
-    
     class Meta:
         model = Order
-        fields = ['id', 'user', 'items', 'created_at']
+        fields = '__all__'
+
+class CartSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer()
+    item = ItemSerializer()
+
+    class Meta:
+        model = Cart
+        fields = '__all__'
