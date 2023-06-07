@@ -16,7 +16,7 @@ class Cart(models.Model):
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return self.user
+        return str(self.item.name+str(self.quantity))
     
 
 class Order(models.Model):
