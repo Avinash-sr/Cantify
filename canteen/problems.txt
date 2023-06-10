@@ -3,3 +3,4 @@ media
 models and Model
 problem-:
 default image not showing
+put
