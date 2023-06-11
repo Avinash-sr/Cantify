@@ -1,8 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .views import *
+from rest_framework.routers import DefaultRouter
 
+router = DefaultRouter()
+router.register('order', OrderViewSet, basename='order')
+router.register('cart', CartViewSet, basename='c')
 urlpatterns = [
-    path('cart/', views.handlingCart, name='cart'),
-    path('cart/<int:pk>', views.cartAlter, name='cartAlter'),
+    # path('cartview/', views.handlingCart, name='cart'),
+    # path('cartview/<int:pk>', views.cartAlter, name='cartAlter'),
+    path('api/', include(router.urls)),
 ]

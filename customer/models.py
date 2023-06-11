@@ -22,8 +22,8 @@ class Cart(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
     order_id = models.CharField(default="", max_length=500)
-    item  = models.ForeignKey(Item,on_delete=models.CASCADE,default=None)
-    quantity = models.IntegerField(default=1)
+    cart  = models.ForeignKey(Cart,on_delete=models.CASCADE,default=None)
+    # quantity = models.IntegerField(default=1)
     placed_on = models.DateTimeField(auto_now_add=True)
     delivered = models.BooleanField(default=False)
     cancelled = models.BooleanField(default=False)

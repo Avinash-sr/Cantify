@@ -19,8 +19,8 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CartSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-    item = ItemSerializer()
+    # user = UserSerializer()
+    # item = ItemSerializer()
 
     class Meta:
         model = Cart
